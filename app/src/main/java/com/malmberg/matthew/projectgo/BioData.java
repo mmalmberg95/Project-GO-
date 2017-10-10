@@ -68,4 +68,17 @@ public class BioData {
     public void setSee(Boolean see) {
         See = see;
     }
+
+    @Override
+    public String toString() {
+        return "BioData{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", Eat=" + Eat +
+                ", Drink=" + Drink +
+                ", Listen=" + Listen +
+                ", See=" + See +
+                '}';
+    }
 }

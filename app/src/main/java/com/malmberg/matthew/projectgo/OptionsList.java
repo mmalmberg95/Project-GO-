@@ -23,10 +23,10 @@ public class OptionsList extends AppCompatActivity {
 
     }
 
-    private List<BioData> BiosList = new ArrayList<>();
+    private List<BioData> BioList = new ArrayList<>();
     private void readGoData() {
         //takes GoData and puts it in an InputStream
-        InputStream is = getResources().openRawResource(R.raw.GoData);
+        InputStream is = getResources().openRawResource(R.raw.godata);
         //created to read the InputStream
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, Charset.forName("UTF-8"))
@@ -35,7 +35,22 @@ public class OptionsList extends AppCompatActivity {
         String line = "";
         try {
             while ( (line = reader.readLine()) != null ) {
+                //split by comma
+                //info is a just a identifier for the different splits
+                String[] info = line.split(",");
 
+                //Read the Data
+                BioData data = new BioData();
+                data.setName(info[0]);
+                data.setPrice(Integer.parseInt(info[1]));
+                data.setDescription(info[2]);
+                data.setEat(Boolean.parseBoolean(info[3]));
+                data.setDrink(Boolean.parseBoolean(info[4]));
+                data.setListen(Boolean.parseBoolean(info[5]));
+                data.setSee(Boolean.parseBoolean(info[6]));
+
+                //adds the data to our arrayList
+                BioList.add(data);
             }
         //catches any errors that might appear while reading the file and outputs the error message
         } catch (IOException e) {

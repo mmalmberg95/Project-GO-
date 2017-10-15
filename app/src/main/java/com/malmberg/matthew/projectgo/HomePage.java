@@ -70,10 +70,11 @@ public class HomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        readGoData();
+        //readGoData();
     }
 
     private List<BioData> BioArray = new ArrayList<>();
+
     private void readGoData() {
         //takes GoData and puts it in an InputStream
         InputStream is = getResources().openRawResource(R.raw.godata);

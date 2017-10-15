@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.malmberg.matthew.projectgo">
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".OptionsList"></activity>
+
     </application>
 
 </manifest>

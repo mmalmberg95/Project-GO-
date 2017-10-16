@@ -21,8 +21,9 @@ public class HomePage extends AppCompatActivity {
 
     private ImageButton eatButton;
     private ImageButton drinkButton;
-    private ImageButton listenButton;
-    private ImageButton seeButton;
+    private ImageButton doButton;
+    //private ImageButton seeButton;
+
 
 
 
@@ -33,14 +34,15 @@ public class HomePage extends AppCompatActivity {
 
         eatButton = (ImageButton) findViewById(R.id.eat_button);
         drinkButton = (ImageButton) findViewById(R.id.drink_button);
-        listenButton = (ImageButton) findViewById(R.id.listen_button);
-        seeButton = (ImageButton) findViewById(R.id.see_button);
+        doButton = (ImageButton) findViewById(R.id.do_button);
+        //seeButton = (ImageButton) findViewById(R.id.see_button);
 
 
         eatButton.setOnClickListener (new View.OnClickListener(){
             @Override
             public void onClick (View view) {
                 Intent intent = new Intent(view.getContext(), OptionsList.class);
+                intent.putExtra("whichList", 1);
                 startActivity(intent);
 
 
@@ -51,25 +53,27 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick (View view) {
                 Intent intent = new Intent(view.getContext(), OptionsList.class);
+                intent.putExtra("whichList", 2);
                 startActivity(intent);
             }
         });
 
-        listenButton.setOnClickListener (new View.OnClickListener(){
+        doButton.setOnClickListener (new View.OnClickListener(){
             @Override
             public void onClick (View view) {
                 Intent intent = new Intent(view.getContext(), OptionsList.class);
+                intent.putExtra("whichList", 3);
                 startActivity(intent);
             }
         });
 
-        seeButton.setOnClickListener (new View.OnClickListener(){
-            @Override
-            public void onClick (View view) {
-                Intent intent = new Intent(view.getContext(), OptionsList.class);
-                startActivity(intent);
-            }
-        });
+//        seeButton.setOnClickListener (new View.OnClickListener(){
+//            @Override
+//            public void onClick (View view) {
+//                Intent intent = new Intent(view.getContext(), OptionsList.class);
+//                startActivity(intent);
+//            }
+//        });
         //readGoData();
     }
 
@@ -110,5 +114,7 @@ public class HomePage extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    //TODO: create methods to read DrinkData and DoData and add to separate arrays
 
 }

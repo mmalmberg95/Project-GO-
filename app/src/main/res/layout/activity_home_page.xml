@@ -40,7 +40,7 @@
             app:srcCompat="@drawable/button1" />
 
         <ImageButton
-            android:id="@+id/listen_button"
+            android:id="@+id/do_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.45"
@@ -48,14 +48,5 @@
             android:contentDescription="Listen"
             app:srcCompat="@drawable/button1" />
 
-        <ImageButton
-            android:id="@+id/see_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.44"
-            android:background="@android:color/transparent"
-            android:backgroundTint="@android:color/white"
-            android:contentDescription="See"
-            app:srcCompat="@drawable/button1" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

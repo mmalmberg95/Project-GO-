@@ -74,14 +74,14 @@ public class HomePage extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
-        //readGoData();
+        readGoData();
     }
 
     private List<BioData> BioArray = new ArrayList<>();
 
     private void readGoData() {
         //takes GoData and puts it in an InputStream
-        InputStream is = getResources().openRawResource(R.raw.godata);
+        InputStream is = getResources().openRawResource(R.raw.food_data);
         //created to read the InputStream
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, Charset.forName("UTF-8"))
@@ -89,6 +89,7 @@ public class HomePage extends AppCompatActivity {
         //loop to read file
         String line = "";
         try {
+            reader.readLine();
             while ((line = reader.readLine()) != null) {
                 //split by comma
                 //info is a just a identifier for the different splits
@@ -98,11 +99,14 @@ public class HomePage extends AppCompatActivity {
                 BioData data = new BioData();
                 data.setName(info[0]);
                 data.setPrice(Integer.parseInt(info[1]));
-                data.setDescription(info[2]);
-                data.setEat(Boolean.parseBoolean(info[3]));
-                data.setDrink(Boolean.parseBoolean(info[4]));
-                data.setListen(Boolean.parseBoolean(info[5]));
-                data.setSee(Boolean.parseBoolean(info[6]));
+                data.setStars(Integer.parseInt(info[2]));
+                data.setShort_description(info[3]);
+                data.setLong_description(info[4]);
+//                data.setDescription(info[2]);
+//                data.setEat(Boolean.parseBoolean(info[3]));
+//                data.setDrink(Boolean.parseBoolean(info[4]));
+//                data.setListen(Boolean.parseBoolean(info[5]));
+//                data.setSee(Boolean.parseBoolean(info[6]));
 
                 //adds the data to our arrayList
                 BioArray.add(data);

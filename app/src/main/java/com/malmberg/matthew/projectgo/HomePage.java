@@ -2,6 +2,7 @@ package com.malmberg.matthew.projectgo;
 
 import android.content.Intent;
 import android.media.Image;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,9 +14,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class HomePage extends AppCompatActivity {
 
@@ -24,7 +27,7 @@ public class HomePage extends AppCompatActivity {
     private ImageButton doButton;
     //private ImageButton seeButton;
 
-
+    public ArrayList<BioData> BioArray = new ArrayList<>();
 
 
     @Override
@@ -43,7 +46,22 @@ public class HomePage extends AppCompatActivity {
             public void onClick (View view) {
                 Intent intent = new Intent(view.getContext(), OptionsList.class);
                 intent.putExtra("whichList", 1);
+
+
+                Random rand = new Random();
+                int option1 = rand.nextInt(BioArray.size());
+                int option2 = rand.nextInt(BioArray.size());
+                int option3 = rand.nextInt(BioArray.size());
+
+
+                intent.putExtra("food1", option1);
+                intent.putExtra("option2", option2);
+                intent.putExtra("option3", option3);
+
+
                 startActivity(intent);
+
+
 
 
             }
@@ -77,7 +95,7 @@ public class HomePage extends AppCompatActivity {
         readGoData();
     }
 
-    private List<BioData> BioArray = new ArrayList<>();
+
 
     private void readGoData() {
         //takes GoData and puts it in an InputStream

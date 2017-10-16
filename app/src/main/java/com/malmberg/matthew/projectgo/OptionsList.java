@@ -11,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -22,6 +24,7 @@ public class OptionsList extends AppCompatActivity {
 
     //TODO: int from intent 1-3 for Eat, Drink, Do
     private int whichList;
+    private int option1;
 
 
     @Override
@@ -31,12 +34,13 @@ public class OptionsList extends AppCompatActivity {
 
         Intent myIntent = getIntent();
         whichList = myIntent.getIntExtra("whichList", 0);
+        option1 = myIntent.getIntExtra("option1", option1);
 
 
         biolist = (ListView) findViewById(R.id.bio_list);
 
         //This is just test data. Real code will have arrayList passed in from intent.
-        EatData food1 = new EatData("Restaurant title", 5, 4, "123 Avenue", "short description", "long description");
+        EatData food1 = new EatData("Restaurant title 3", 3, 4, "123 Avenue", "short description", "long description");
         EatData food2 = new EatData("Restaurant title 2", 2, 2, "456 Avenue", "short description", "long description");
         EatData food3 = new EatData("Restaurant title 3", 3, 4, "489 Avenue", "short description", "long description");
 
@@ -79,6 +83,13 @@ public class OptionsList extends AppCompatActivity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             view = getLayoutInflater().inflate(R.layout.options_list_layout,null);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(OptionsList.this,Pop.class));
+                }
+            });
 
 
             ImageView image = (ImageView)view.findViewById(R.id.imageView);

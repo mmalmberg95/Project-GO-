@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ public class OptionsList extends AppCompatActivity {
     private ListView biolist;
     ArrayList<EatData> eatList = new ArrayList<EatData>();
     ArrayList<DrinkData> drinkList = new ArrayList<DrinkData>();
+    private ImageButton resetButton;
 
     //TODO: int from intent 1-3 for Eat, Drink, Do
     private int whichList;
@@ -38,6 +40,7 @@ public class OptionsList extends AppCompatActivity {
 
 
         biolist = (ListView) findViewById(R.id.bio_list);
+        resetButton = (ImageButton) findViewById(R.id.imageButton);
 
         //This is just test data. Real code will have arrayList passed in from intent.
         EatData food1 = new EatData("Restaurant title 3", 3, 4, "123 Avenue", "short description", "long description");
@@ -113,6 +116,7 @@ public class OptionsList extends AppCompatActivity {
                 address.setText(drinkList.get(i).getLocation());
             }
 
+            //TODO: change drink list to do list
             if(whichList == 3) {
                 image.setImageResource(R.drawable.house);
                 name.setText(eatList.get(i).getName());

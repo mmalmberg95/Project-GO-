@@ -1,32 +1,37 @@
 package com.malmberg.matthew.projectgo;
 
+import java.io.Serializable;
+
 /**
  * Created by jennapfingsten on 10/15/17.
  */
 
-public class DoData {
+public class DoData implements Serializable {
 
     private String name;
     private int price;
     private int stars;
-    private String location;
+    private String address;
     private String shortDesc;
     private String longDesc;
     private int month;
     private int day;
     private int year;
+    private int latitude;
+    private int longitude;
+    private String imageName;
 
-    public DoData(String name, int price, int stars, String location, String shortDesc, String longDesc, int month, int day, int year) {
-        this.name = name;
-        this.price = price;
-        this.stars = stars;
-        this.location = location;
-        this.shortDesc = shortDesc;
-        this.longDesc = longDesc;
-        this.month = month;
-        this.day = day;
-        this.year = year;
-    }
+//    public DoData(String name, int price, int stars, String address, String shortDesc, String longDesc, int month, int day, int year) {
+//        this.name = name;
+//        this.price = price;
+//        this.stars = stars;
+//        this.address = address;
+//        this.shortDesc = shortDesc;
+//        this.longDesc = longDesc;
+//        this.month = month;
+//        this.day = day;
+//        this.year = year;
+//    }
 
     public String getName() {
         return name;
@@ -53,11 +58,11 @@ public class DoData {
     }
 
     public String getLocation() {
-        return location;
+        return address;
     }
 
     public void setLocation(String location) {
-        this.location = location;
+        this.address = location;
     }
 
     public String getShortDesc() {
@@ -98,6 +103,31 @@ public class DoData {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public int getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(int latitude) {
+        this.latitude = latitude;
+    }
+
+    public int getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(int longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        String s = "R.drawable." + this.imageName;
+        s = imageName;
     }
 }
 

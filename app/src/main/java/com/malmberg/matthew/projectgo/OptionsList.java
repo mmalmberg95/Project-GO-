@@ -22,6 +22,7 @@ public class OptionsList extends AppCompatActivity {
     private ListView biolist;
     ArrayList<EatData> eatList = new ArrayList<EatData>();
     ArrayList<DrinkData> drinkList = new ArrayList<DrinkData>();
+    ArrayList<DoData> doList = new ArrayList<DoData>();
     private ImageButton resetButton;
 
     //TODO: int from intent 1-3 for Eat, Drink, Do
@@ -34,8 +35,22 @@ public class OptionsList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options_list);
 
+        //Create a new intent
+        //Get the variable for which type of list
+        //Get the correct list
+        //NOTE: the other two lists will be empty
         Intent myIntent = getIntent();
         whichList = myIntent.getIntExtra("whichList", 0);
+        if(whichList == 1) {
+            eatList = (ArrayList<EatData>) myIntent.getSerializableExtra("array");
+        }
+        else if(whichList == 2) {
+            drinkList = (ArrayList<DrinkData>) myIntent.getSerializableExtra("array");
+        }
+        else {
+            doList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
+        }
+
         option1 = myIntent.getIntExtra("option1", option1);
 
 
@@ -43,21 +58,21 @@ public class OptionsList extends AppCompatActivity {
         resetButton = (ImageButton) findViewById(R.id.imageButton);
 
         //This is just test data. Real code will have arrayList passed in from intent.
-        EatData food1 = new EatData("Restaurant title 3", 3, 4, "123 Avenue", "short description", "long description");
-        EatData food2 = new EatData("Restaurant title 2", 2, 2, "456 Avenue", "short description", "long description");
-        EatData food3 = new EatData("Restaurant title 3", 3, 4, "489 Avenue", "short description", "long description");
-
-        eatList.add(food1);
-        eatList.add(food2);
-        eatList.add(food3);
-
-        DrinkData drink1 = new DrinkData("Bar title", 5, 4, "123 Avenue", "short bar description", "long bar description");
-        DrinkData drink2 = new DrinkData("Bar title 2", 1, 2, "456 Avenue", "short bar description 2", "long bar description");
-        DrinkData drink3 = new DrinkData("Bar title 3", 3, 3, "789 Avenue", "short bar description 3", "long bar description");
-
-        drinkList.add(drink1);
-        drinkList.add(drink2);
-        drinkList.add(drink3);
+//        EatData food1 = new EatData("Restaurant title 3", 3, 4, "123 Avenue", "short description", "long description");
+//        EatData food2 = new EatData("Restaurant title 2", 2, 2, "456 Avenue", "short description", "long description");
+//        EatData food3 = new EatData("Restaurant title 3", 3, 4, "489 Avenue", "short description", "long description");
+//
+//        eatList.add(food1);
+//        eatList.add(food2);
+//        eatList.add(food3);
+//
+//        DrinkData drink1 = new DrinkData("Bar title", 5, 4, "123 Avenue", "short bar description", "long bar description");
+//        DrinkData drink2 = new DrinkData("Bar title 2", 1, 2, "456 Avenue", "short bar description 2", "long bar description");
+//        DrinkData drink3 = new DrinkData("Bar title 3", 3, 3, "789 Avenue", "short bar description 3", "long bar description");
+//
+//        drinkList.add(drink1);
+//        drinkList.add(drink2);
+//        drinkList.add(drink3);
 
         //end test section
 
@@ -107,14 +122,14 @@ public class OptionsList extends AppCompatActivity {
                 image.setImageResource(R.drawable.house);
                 name.setText(eatList.get(i).getName());
                 description.setText(eatList.get(i).getShortDesc());
-                address.setText(eatList.get(i).getLocation());
+                address.setText(eatList.get(i).getAddress());
             }
 
             if(whichList == 2) {
                 image.setImageResource(R.drawable.house);
                 name.setText(drinkList.get(i).getName());
                 description.setText(drinkList.get(i).getShortDesc());
-                address.setText(drinkList.get(i).getLocation());
+                address.setText(drinkList.get(i).getAddress());
             }
 
             //TODO: change drink list to do list
@@ -122,7 +137,7 @@ public class OptionsList extends AppCompatActivity {
                 image.setImageResource(R.drawable.house);
                 name.setText(eatList.get(i).getName());
                 description.setText(eatList.get(i).getShortDesc());
-                address.setText(eatList.get(i).getLocation());
+                address.setText(eatList.get(i).getAddress());
             }
 
 

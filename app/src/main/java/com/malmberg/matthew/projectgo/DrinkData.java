@@ -1,26 +1,33 @@
 package com.malmberg.matthew.projectgo;
 
+import java.io.Serializable;
+
 /**
  * Created by jennapfingsten on 10/15/17.
  */
 
-public class DrinkData {
+public class DrinkData implements Serializable {
 
     private String name;
     private int price;
     private int stars;
-    private String location;
+    private String address;
     private String shortDesc;
     private String longDesc;
+    private float latitude;
+    private float longitude;
+    private String imageName;
 
-    public DrinkData(String name, int price, int stars, String location, String shortDesc, String longDesc) {
-        this.name = name;
-        this.price = price;
-        this.stars = stars;
-        this.location = location;
-        this.shortDesc = shortDesc;
-        this.longDesc = longDesc;
-    }
+//    public DrinkData(String name, int price, int stars, String address, String shortDesc, String longDesc, float latitude, float longitude) {
+//        this.name = name;
+//        this.price = price;
+//        this.stars = stars;
+//        this.address = address;
+//        this.shortDesc = shortDesc;
+//        this.longDesc = longDesc;
+//        this.latitude = latitude;
+//        this.longitude = longitude;
+//    }
 
     public String getName() {
         return name;
@@ -46,12 +53,12 @@ public class DrinkData {
         this.stars = stars;
     }
 
-    public String getLocation() {
-        return location;
+    public String getAddress() {
+        return address;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setAddress(String location) {
+        this.address = address;
     }
 
     public String getShortDesc() {
@@ -69,6 +76,32 @@ public class DrinkData {
     public void setLongDesc(String longDesc) {
         this.longDesc = longDesc;
     }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        String s = "R.drawable." + this.imageName;
+        s = imageName;
+    }
 }
+
 
 

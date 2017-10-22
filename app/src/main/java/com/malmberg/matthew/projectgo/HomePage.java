@@ -53,14 +53,13 @@ public class HomePage extends AppCompatActivity {
 
 
                 Random rand = new Random();
-//                int option1 = rand.nextInt(BioArray.size());
-//                int option2 = rand.nextInt(BioArray.size());
-//                int option3 = rand.nextInt(BioArray.size());
-//
-//
-//                intent.putExtra("food1", option1);
-//                intent.putExtra("option2", option2);
-//                intent.putExtra("option3", option3);
+                int option1 = rand.nextInt(EatArray.size());
+                int option2 = rand.nextInt(EatArray.size());
+                int option3 = rand.nextInt(EatArray.size());
+
+                intent.putExtra("option1", option1);
+                intent.putExtra("option2", option2);
+                intent.putExtra("option3", option3);
 
 
                 startActivity(intent);

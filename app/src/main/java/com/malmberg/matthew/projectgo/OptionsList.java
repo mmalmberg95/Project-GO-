@@ -59,11 +59,15 @@ public class OptionsList extends AppCompatActivity {
             doList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
         }
 
-//        option1 = myIntent.getIntExtra("option1", option1);
-
-
         biolist = (ListView) findViewById(R.id.bio_list);
         resetButton = (ImageButton) findViewById(R.id.imageButton);
+
+        resetButton.setOnClickListener (new View.OnClickListener(){
+            @Override
+            public void onClick (View view) {
+                newList(whichList);
+            }
+        });
 
         newList(whichList);
 
@@ -72,6 +76,8 @@ public class OptionsList extends AppCompatActivity {
 
     }
 
+
+
     private void newList (int whichList) {
         int typeList = whichList;
         if (typeList == 1) { Collections.shuffle(eatList); }
@@ -79,6 +85,8 @@ public class OptionsList extends AppCompatActivity {
         if (typeList == 3) { Collections.shuffle(doList); }
         biolist.setAdapter(options_adapter);
     }
+
+
 
     class options_adapter extends BaseAdapter {
 

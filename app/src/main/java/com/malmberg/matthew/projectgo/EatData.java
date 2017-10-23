@@ -94,12 +94,12 @@ public class EatData implements Serializable {
     }
 
     public String getImageName() {
+
         return imageName;
     }
 
     public void setImageName(String imageName) {
-        String s = "R.drawable." + this.imageName;
-        s = imageName;
+        this.imageName = imageName;
     }
 }
 

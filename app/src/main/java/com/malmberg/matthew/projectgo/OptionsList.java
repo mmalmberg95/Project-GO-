@@ -13,8 +13,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+
+import static com.malmberg.matthew.projectgo.R.drawable.button1;
+
+//import static android.R.id.button1;
 
 
 public class OptionsList extends AppCompatActivity {
@@ -24,10 +29,14 @@ public class OptionsList extends AppCompatActivity {
     ArrayList<DrinkData> drinkList = new ArrayList<DrinkData>();
     ArrayList<DoData> doList = new ArrayList<DoData>();
     private ImageButton resetButton;
+//    Random rand = new Random();
+//    int randNum;
 
     //TODO: int from intent 1-3 for Eat, Drink, Do
     private int whichList;
-    private int option1;
+
+    options_adapter options_adapter = new options_adapter();
+
 
 
     @Override
@@ -38,7 +47,6 @@ public class OptionsList extends AppCompatActivity {
         //Create a new intent
         //Get the variable for which type of list
         //Get the correct list
-        //NOTE: the other two lists will be empty
         Intent myIntent = getIntent();
         whichList = myIntent.getIntExtra("whichList", 0);
         if(whichList == 1) {
@@ -51,34 +59,25 @@ public class OptionsList extends AppCompatActivity {
             doList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
         }
 
-        option1 = myIntent.getIntExtra("option1", option1);
+//        option1 = myIntent.getIntExtra("option1", option1);
 
 
         biolist = (ListView) findViewById(R.id.bio_list);
         resetButton = (ImageButton) findViewById(R.id.imageButton);
 
-        //This is just test data. Real code will have arrayList passed in from intent.
-//        EatData food1 = new EatData("Restaurant title 3", 3, 4, "123 Avenue", "short description", "long description");
-//        EatData food2 = new EatData("Restaurant title 2", 2, 2, "456 Avenue", "short description", "long description");
-//        EatData food3 = new EatData("Restaurant title 3", 3, 4, "489 Avenue", "short description", "long description");
-//
-//        eatList.add(food1);
-//        eatList.add(food2);
-//        eatList.add(food3);
-//
-//        DrinkData drink1 = new DrinkData("Bar title", 5, 4, "123 Avenue", "short bar description", "long bar description");
-//        DrinkData drink2 = new DrinkData("Bar title 2", 1, 2, "456 Avenue", "short bar description 2", "long bar description");
-//        DrinkData drink3 = new DrinkData("Bar title 3", 3, 3, "789 Avenue", "short bar description 3", "long bar description");
-//
-//        drinkList.add(drink1);
-//        drinkList.add(drink2);
-//        drinkList.add(drink3);
+        newList(whichList);
 
-        //end test section
+//        options_adapter options_adapter = new options_adapter();
+        //biolist.setAdapter(options_adapter);
 
-        options_adapter options_adapter = new options_adapter();
+    }
+
+    private void newList (int whichList) {
+        int typeList = whichList;
+        if (typeList == 1) { Collections.shuffle(eatList); }
+        if (typeList == 2) {Collections.shuffle(drinkList); }
+        if (typeList == 3) { Collections.shuffle(doList); }
         biolist.setAdapter(options_adapter);
-
     }
 
     class options_adapter extends BaseAdapter {
@@ -116,27 +115,39 @@ public class OptionsList extends AppCompatActivity {
             TextView address = (TextView)view.findViewById(R.id.textView_address);
 
 
-            //TODO: random aspect
+            //randNum = rand.nextInt(eatList.size());
+            //int[] ints = new Random().ints(0, 50).distinct().limit(3).toArray();
+
+
+
             if(whichList == 1) {
-                image.setImageResource(R.drawable.house);
+                //image.setImageResource(getResources().getIdentifier("button1", "drawable", null));
+                int drawableId = getResources().getIdentifier(eatList.get(i).getImageName(), "drawable", getPackageName());
+                image.setImageResource(drawableId);
+                //image.setImageResource(R.drawable.jethros);
                 name.setText(eatList.get(i).getName());
                 description.setText(eatList.get(i).getShortDesc());
                 address.setText(eatList.get(i).getAddress());
             }
 
+
             if(whichList == 2) {
-                image.setImageResource(R.drawable.house);
+//                image.setImageResource(R.drawable.house);
+                int drawableId = getResources().getIdentifier(drinkList.get(i).getImageName(), "drawable", getPackageName());
+                image.setImageResource(drawableId);
                 name.setText(drinkList.get(i).getName());
                 description.setText(drinkList.get(i).getShortDesc());
                 address.setText(drinkList.get(i).getAddress());
             }
 
-            //TODO: change drink list to do list
+
             if(whichList == 3) {
                 image.setImageResource(R.drawable.house);
-                name.setText(eatList.get(i).getName());
-                description.setText(eatList.get(i).getShortDesc());
-                address.setText(eatList.get(i).getAddress());
+//                int drawableId = getResources().getIdentifier(doList.get(i).getImageName(), "drawable", getPackageName());
+//                image.setImageResource(drawableId);
+                name.setText(doList.get(i).getName());
+                description.setText(doList.get(i).getShortDesc());
+                address.setText(doList.get(i).getAddress());
             }
 
 

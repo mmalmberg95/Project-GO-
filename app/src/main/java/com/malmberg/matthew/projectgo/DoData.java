@@ -17,8 +17,8 @@ public class DoData implements Serializable {
     private int month;
     private int day;
     private int year;
-    private int latitude;
-    private int longitude;
+    private float latitude;
+    private float longitude;
     private String imageName;
 
 //    public DoData(String name, int price, int stars, String address, String shortDesc, String longDesc, int month, int day, int year) {
@@ -57,11 +57,11 @@ public class DoData implements Serializable {
         this.stars = stars;
     }
 
-    public String getLocation() {
+    public String getAddress() {
         return address;
     }
 
-    public void setLocation(String location) {
+    public void setAddress(String location) {
         this.address = location;
     }
 
@@ -105,19 +105,19 @@ public class DoData implements Serializable {
         this.year = year;
     }
 
-    public int getLatitude() {
+    public float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(int latitude) {
+    public void setLatitude(float latitude) {
         this.latitude = latitude;
     }
 
-    public int getLongitude() {
+    public float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(int longitude) {
+    public void setLongitude(float longitude) {
         this.longitude = longitude;
     }
 
@@ -126,8 +126,7 @@ public class DoData implements Serializable {
     }
 
     public void setImageName(String imageName) {
-        String s = "R.drawable." + this.imageName;
-        s = imageName;
+        this.imageName = imageName;
     }
 }
 

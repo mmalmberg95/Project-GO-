@@ -44,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.45"
+            android:background="@android:color/transparent"
             android:backgroundTint="@android:color/white"
             android:contentDescription="Listen"
             app:srcCompat="@drawable/button1" />

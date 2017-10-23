@@ -98,8 +98,7 @@ public class DrinkData implements Serializable {
     }
 
     public void setImageName(String imageName) {
-        String s = "R.drawable." + this.imageName;
-        s = imageName;
+        this.imageName = imageName;
     }
 }
 

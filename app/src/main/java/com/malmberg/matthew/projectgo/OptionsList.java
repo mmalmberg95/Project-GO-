@@ -16,12 +16,15 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+
+import java.util.Collections;
+import java.util.Random;
+
+import static com.malmberg.matthew.projectgo.R.drawable.button1;
+
+//import static android.R.id.button1;
+
 
 
 public class OptionsList extends AppCompatActivity {
@@ -31,13 +34,15 @@ public class OptionsList extends AppCompatActivity {
     ArrayList<DrinkData> drinkList = new ArrayList<DrinkData>();
     ArrayList<DoData> doList = new ArrayList<DoData>();
     private ImageButton resetButton;
-    List<Integer> random = new ArrayList<Integer>();
 
+//    Random rand = new Random();
+//    int randNum;
     //TODO: int from intent 1-3 for Eat, Drink, Do
     private int whichList;
-    private int option1;
-    private int option2;
-    private int option3;
+
+    options_adapter options_adapter = new options_adapter();
+
+
 
 
     @Override
@@ -48,7 +53,6 @@ public class OptionsList extends AppCompatActivity {
         //Create a new intent
         //Get the variable for which type of list
         //Get the correct list
-        //NOTE: the other two lists will be empty
         Intent myIntent = getIntent();
         whichList = myIntent.getIntExtra("whichList", 0);
         if(whichList == 1) {
@@ -61,19 +65,35 @@ public class OptionsList extends AppCompatActivity {
             doList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
         }
 
-        option1 = myIntent.getIntExtra("option1", option1);
-        random.add(option1);
-        option2 = myIntent.getIntExtra("option2", option2);
-        random.add(option2);
-        option3 = myIntent.getIntExtra("option3", option3);
-        random.add(option3);
 
-
+//        option1 = myIntent.getIntExtra("option1", option1);
+//        random.add(option1);
+//        option2 = myIntent.getIntExtra("option2", option2);
+//        random.add(option2);
+//        option3 = myIntent.getIntExtra("option3", option3);
+//        random.add(option3);
+//
+//
+//        biolist = (ListView) findViewById(R.id.bio_list);
+//        resetButton = (ImageButton) findViewById(R.id.imageButton);
+//
+//        options_adapter options_adapter = new options_adapter();
+//        biolist.setAdapter(options_adapter
         biolist = (ListView) findViewById(R.id.bio_list);
         resetButton = (ImageButton) findViewById(R.id.imageButton);
 
-        options_adapter options_adapter = new options_adapter();
-        biolist.setAdapter(options_adapter);
+        resetButton.setOnClickListener (new View.OnClickListener(){
+            @Override
+            public void onClick (View view) {
+                newList(whichList);
+            }
+        });
+
+        newList(whichList);
+
+//        options_adapter options_adapter = new options_adapter();
+        //biolist.setAdapter(options_adapter);
+
 
         biolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -91,7 +111,7 @@ public class OptionsList extends AppCompatActivity {
                     intent.putExtra("array", doList);
                     intent.putExtra("whichList", 3);
                 }
-                intent.putExtra("option", option1);
+                //intent.putExtra("option", option1);
 
                 startActivity(intent);
 
@@ -102,11 +122,23 @@ public class OptionsList extends AppCompatActivity {
 
     }
 
+
+
+    private void newList (int whichList) {
+        int typeList = whichList;
+        if (typeList == 1) { Collections.shuffle(eatList); }
+        if (typeList == 2) {Collections.shuffle(drinkList); }
+        if (typeList == 3) { Collections.shuffle(doList); }
+        biolist.setAdapter(options_adapter);
+    }
+
+
+
     class options_adapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            return random.size();
+            return 3;
         }
 
         @Override
@@ -130,10 +162,16 @@ public class OptionsList extends AppCompatActivity {
             TextView address = (TextView)view.findViewById(R.id.textView_address);
 
 
-            //TODO: random aspect
-            if(whichList == 1) {
+            //randNum = rand.nextInt(eatList.size());
+            //int[] ints = new Random().ints(0, 50).distinct().limit(3).toArray();
 
-                image.setImageResource(R.drawable.house);
+
+
+            if(whichList == 1) {
+                 //image.setImageResource(getResources().getIdentifier("button1", "drawable", null));
+                int drawableId = getResources().getIdentifier(eatList.get(i).getImageName(), "drawable", getPackageName());
+                image.setImageResource(drawableId);
+                //image.setImageResource(R.drawable.jethros);
                 name.setText(eatList.get(i).getName());
                 description.setText(eatList.get(i).getShortDesc());
                 address.setText(eatList.get(i).getAddress());
@@ -141,19 +179,24 @@ public class OptionsList extends AppCompatActivity {
 
             }
 
+
             if(whichList == 2) {
-                image.setImageResource(R.drawable.house);
+//                image.setImageResource(R.drawable.house);
+                int drawableId = getResources().getIdentifier(drinkList.get(i).getImageName(), "drawable", getPackageName());
+                image.setImageResource(drawableId);
                 name.setText(drinkList.get(i).getName());
                 description.setText(drinkList.get(i).getShortDesc());
                 address.setText(drinkList.get(i).getAddress());
             }
 
-            //TODO: change drink list to do list
+
             if(whichList == 3) {
                 image.setImageResource(R.drawable.house);
-                name.setText(eatList.get(i).getName());
-                description.setText(eatList.get(i).getShortDesc());
-                address.setText(eatList.get(i).getAddress());
+//                int drawableId = getResources().getIdentifier(doList.get(i).getImageName(), "drawable", getPackageName());
+//                image.setImageResource(drawableId);
+                name.setText(doList.get(i).getName());
+                description.setText(doList.get(i).getShortDesc());
+                address.setText(doList.get(i).getAddress());
             }
 
 

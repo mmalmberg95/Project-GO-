@@ -67,7 +67,7 @@ public class options_adapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return random.size();
+        return 3;
     }
 
     @Override

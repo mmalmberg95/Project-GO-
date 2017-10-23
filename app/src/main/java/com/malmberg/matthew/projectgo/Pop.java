@@ -30,7 +30,7 @@ public class Pop extends Activity {
 
     //TODO: int from intent 1-3 for Eat, Drink, Do
     private int whichList;
-    private int option1;
+    private int option;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class Pop extends Activity {
 //        else {
 //            doList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
 //        }
-        option1 = myIntent.getIntExtra("option1", option1);
+        option = myIntent.getIntExtra("position", 0);
 
         biolist = (ListView) findViewById(R.id.listview);
 
@@ -73,8 +73,8 @@ public class Pop extends Activity {
         public int getCount() {return 1;}
 
         @Override
-        public Object getItem(int i) {
-            return null;
+        public Object getItem(int postion) {
+            return myIntent.getIntExtra("position", 0);
         }
 
         @Override
@@ -94,10 +94,10 @@ public class Pop extends Activity {
 
             if(whichList == 1) {
                 //image.setImageResource(R.drawable.house);
-                name.setText(eatList.get(i).getName());
-                stars.setRating(eatList.get(i).getStars());
-                description.setText(eatList.get(i).getLongDesc());
-                address.setText(eatList.get(i).getAddress());
+                name.setText(eatList.get(position).getName());
+                stars.setRating(eatList.get(position).getStars());
+                description.setText(eatList.get(position).getLongDesc());
+                address.setText(eatList.get(position).getAddress());
             }
 
             else if(whichList == 2) {

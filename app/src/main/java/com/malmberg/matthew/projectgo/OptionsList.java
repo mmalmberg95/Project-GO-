@@ -95,29 +95,29 @@ public class OptionsList extends AppCompatActivity {
         //biolist.setAdapter(options_adapter);
 
 
-        biolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(OptionsList.this,Pop.class);
-                if(whichList == 1) {
-                    intent.putExtra("array", eatList);
-                    intent.putExtra("whichList", 1);
-                }
-                else if(whichList == 2){
-                    intent.putExtra("array", drinkList);
-                    intent.putExtra("whichList", 2);
-                }
-                else{
-                    intent.putExtra("array", doList);
-                    intent.putExtra("whichList", 3);
-                }
-                //intent.putExtra("option", option1);
-
-                startActivity(intent);
-
-
-            }
-        });
+//        biolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent intent = new Intent(OptionsList.this,Pop.class);
+//                if(whichList == 1) {
+//                    intent.putExtra("array", eatList);
+//                    intent.putExtra("whichList", 1);
+//                }
+//                else if(whichList == 2){
+//                    intent.putExtra("array", drinkList);
+//                    intent.putExtra("whichList", 2);
+//                }
+//                else{
+//                    intent.putExtra("array", doList);
+//                    intent.putExtra("whichList", 3);
+//                }
+//                //intent.putExtra("option", option1);
+//
+//                startActivity(intent);
+//
+//
+//            }
+//        });
 
 
     }
@@ -154,6 +154,31 @@ public class OptionsList extends AppCompatActivity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             view = getLayoutInflater().inflate(R.layout.options_list_layout,null);
+
+            biolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(OptionsList.this,Pop.class);
+                    if(whichList == 1) {
+                        intent.putExtra("array", eatList);
+                        intent.putExtra("whichList", 1);
+                        intent.putExtra("position", i);
+                    }
+                    else if(whichList == 2){
+                        intent.putExtra("array", drinkList);
+                        intent.putExtra("whichList", 2);
+                    }
+                    else{
+                        intent.putExtra("array", doList);
+                        intent.putExtra("whichList", 3);
+                    }
+                    //intent.putExtra("option", option1);
+
+                    startActivity(intent);
+
+
+                }
+            });
 
 
             ImageView image = (ImageView)view.findViewById(R.id.imageView);

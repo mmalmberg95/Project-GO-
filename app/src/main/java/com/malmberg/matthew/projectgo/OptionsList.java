@@ -14,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class OptionsList extends AppCompatActivity {
     ArrayList<DrinkData> drinkList = new ArrayList<DrinkData>();
     ArrayList<DoData> doList = new ArrayList<DoData>();
     private ImageButton resetButton;
+    private SeekBar distance_slider;
 
 //    Random rand = new Random();
 //    int randNum;
@@ -81,6 +83,7 @@ public class OptionsList extends AppCompatActivity {
 //        biolist.setAdapter(options_adapter
         biolist = (ListView) findViewById(R.id.bio_list);
         resetButton = (ImageButton) findViewById(R.id.imageButton);
+        distance_slider = (SeekBar) findViewById(R.id.seekBar);
 
         resetButton.setOnClickListener (new View.OnClickListener(){
             @Override

@@ -66,12 +66,15 @@ public class OptionsList extends AppCompatActivity {
         whichList = myIntent.getIntExtra("whichList", 0);
         if(whichList == 1) {
             eatList = (ArrayList<EatData>) myIntent.getSerializableExtra("array");
+            displayEatList = (ArrayList<EatData>) myIntent.getSerializableExtra("array");
         }
         else if(whichList == 2) {
             drinkList = (ArrayList<DrinkData>) myIntent.getSerializableExtra("array");
+            displayDrinkList = (ArrayList<DrinkData>) myIntent.getSerializableExtra("array");
         }
         else {
             doList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
+            displayDoList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
         }
 
 
@@ -88,6 +91,10 @@ public class OptionsList extends AppCompatActivity {
 //
 //        options_adapter options_adapter = new options_adapter();
 //        biolist.setAdapter(options_adapter
+
+
+
+
         biolist = (ListView) findViewById(R.id.bio_list);
         resetButton = (ImageButton) findViewById(R.id.imageButton);
         distance_slider = (SeekBar) findViewById(R.id.seekBar);
@@ -100,6 +107,24 @@ public class OptionsList extends AppCompatActivity {
         });
 
         newList(whichList);
+
+        distance_slider.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        checkValidity(0, progress);
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                } );
 
 //        options_adapter options_adapter = new options_adapter();
         //biolist.setAdapter(options_adapter);
@@ -131,7 +156,6 @@ public class OptionsList extends AppCompatActivity {
 
 
     }
-
 
 
     private void newList (int whichList) {
@@ -204,12 +228,12 @@ public class OptionsList extends AppCompatActivity {
 
             if(whichList == 1) {
                  //image.setImageResource(getResources().getIdentifier("button1", "drawable", null));
-                int drawableId = getResources().getIdentifier(eatList.get(i).getImageName(), "drawable", getPackageName());
+                int drawableId = getResources().getIdentifier(displayEatList.get(i).getImageName(), "drawable", getPackageName());
                 image.setImageResource(drawableId);
                 //image.setImageResource(R.drawable.jethros);
-                name.setText(eatList.get(i).getName());
-                description.setText(eatList.get(i).getShortDesc());
-                address.setText(eatList.get(i).getAddress());
+                name.setText(displayEatList.get(i).getName());
+                description.setText(displayEatList.get(i).getShortDesc());
+                address.setText(displayEatList.get(i).getAddress());
 
 
             }
@@ -217,11 +241,11 @@ public class OptionsList extends AppCompatActivity {
 
             if(whichList == 2) {
 //                image.setImageResource(R.drawable.house);
-                int drawableId = getResources().getIdentifier(drinkList.get(i).getImageName(), "drawable", getPackageName());
+                int drawableId = getResources().getIdentifier(displayDrinkList.get(i).getImageName(), "drawable", getPackageName());
                 image.setImageResource(drawableId);
-                name.setText(drinkList.get(i).getName());
-                description.setText(drinkList.get(i).getShortDesc());
-                address.setText(drinkList.get(i).getAddress());
+                name.setText(displayDrinkList.get(i).getName());
+                description.setText(displayDrinkList.get(i).getShortDesc());
+                address.setText(displayDrinkList.get(i).getAddress());
             }
 
 
@@ -229,9 +253,9 @@ public class OptionsList extends AppCompatActivity {
                 image.setImageResource(R.drawable.house);
 //                int drawableId = getResources().getIdentifier(doList.get(i).getImageName(), "drawable", getPackageName());
 //                image.setImageResource(drawableId);
-                name.setText(doList.get(i).getName());
-                description.setText(doList.get(i).getShortDesc());
-                address.setText(doList.get(i).getAddress());
+                name.setText(displayDoList.get(i).getName());
+                description.setText(displayDoList.get(i).getShortDesc());
+                address.setText(displayDoList.get(i).getAddress());
             }
 
 
@@ -249,12 +273,12 @@ maxDistance accepts an int for whatever the slider is set to
         Date currentTime = Calendar.getInstance().getTime();
 
         //checks to see if the override time of Month = 12 and Day = 31 is in use
-        if((doList.get(eventID).getDay() = '31') && (doList.get(eventID).getMonth() = '12'))
+        if((doList.get(eventID).getDay() == 31) && (doList.get(eventID).getMonth() == 12))
         {
             return true;
         }
 
-        else if((doList.get(eventID).getDay() = currentTime.getDay()) && (doList.get(eventID).getMonth() = currentTime.getMonth()) && (doList.get(eventID).getYear() = currentTime.getYear()))
+        else if((doList.get(eventID).getDay() == currentTime.getDay()) && (doList.get(eventID).getMonth() == currentTime.getMonth()) && (doList.get(eventID).getYear() == currentTime.getYear()))
         {
             return true;
         }
@@ -275,12 +299,17 @@ maxDistance accepts an int for whatever the slider is set to
         user.setLatitude(41.6005448);
         user.setLongitude(-93.6091064);
 
-        if(whichlist = 1) {
+        //empties arrays
+        displayEatList.clear();
+        displayDrinkList.clear();
+        displayDoList.clear();
+
+        if(whichList == 1) {
             event.setLatitude(eatList.get(eventID).getLatitude());
             event.setLongitude(eatList.get(eventID).getLongitude());
         }
 
-        else if(whichlist = 2) {
+        else if(whichList == 2) {
             event.setLatitude(drinkList.get(eventID).getLatitude());
             event.setLongitude(drinkList.get(eventID).getLongitude());
         }
@@ -292,10 +321,10 @@ maxDistance accepts an int for whatever the slider is set to
 
         //finds and compares distance
 
-        int distance = user.distanceTo(site)/1609.34; //meters to miles
+        double distance = user.distanceTo(event)/1609.39; //meters to miles
 
         //Adds to array if applicable
-        if(whichlist = 1)
+        if(whichList == 1)
         {
             if(distance <= maxDistance)
             {
@@ -309,7 +338,7 @@ maxDistance accepts an int for whatever the slider is set to
             }
         }
 
-        else if(whichlist = 2)
+        else if(whichList == 2)
         {
             if(distance <= maxDistance)
             {
@@ -325,7 +354,7 @@ maxDistance accepts an int for whatever the slider is set to
 
         else
         {
-            if((distance <= maxDistance) && (checkDate[eventID] = true))
+            if((distance <= maxDistance) && (checkDate(eventID) == true))
             {
                 displayDoList.add(doList.get(eventID));
             }

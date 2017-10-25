@@ -155,6 +155,11 @@ public class OptionsList extends AppCompatActivity {
         public View getView(int i, View view, ViewGroup viewGroup) {
             view = getLayoutInflater().inflate(R.layout.options_list_layout,null);
 
+            final ImageView image = (ImageView)view.findViewById(R.id.imageView);
+            final TextView name = (TextView)view.findViewById(R.id.textView_name);
+            final TextView description = (TextView)view.findViewById(R.id.textView_desc);
+            final TextView address = (TextView)view.findViewById(R.id.textView_address);
+
             biolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -162,7 +167,15 @@ public class OptionsList extends AppCompatActivity {
                     if(whichList == 1) {
                         intent.putExtra("array", eatList);
                         intent.putExtra("whichList", 1);
+                        //Log.v("hi", String.valueOf(i));
                         intent.putExtra("position", i);
+
+                        int drawableId = getResources().getIdentifier(eatList.get(i).getImageName(), "drawable", getPackageName());
+                        image.setImageResource(drawableId);
+                        //image.setImageResource(R.drawable.jethros);
+                        name.setText(eatList.get(i).getName());
+                        description.setText(eatList.get(i).getShortDesc());
+                        address.setText(eatList.get(i).getAddress());
                     }
                     else if(whichList == 2){
                         intent.putExtra("array", drinkList);
@@ -181,10 +194,7 @@ public class OptionsList extends AppCompatActivity {
             });
 
 
-            ImageView image = (ImageView)view.findViewById(R.id.imageView);
-            TextView name = (TextView)view.findViewById(R.id.textView_name);
-            TextView description = (TextView)view.findViewById(R.id.textView_desc);
-            TextView address = (TextView)view.findViewById(R.id.textView_address);
+
 
 
             //randNum = rand.nextInt(eatList.size());

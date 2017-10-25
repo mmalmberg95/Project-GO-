@@ -44,7 +44,7 @@ public class Pop extends Activity {
 
         getWindow().setLayout((int)(width*.8), (int)(height*.6));
 
-        setContentView(R.layout.activity_pop);
+        setContentView(R.layout.popupwindow);
 
         Intent myIntent = getIntent();
         whichList = myIntent.getIntExtra("whichList", 0);
@@ -58,39 +58,40 @@ public class Pop extends Activity {
 //            doList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
 //        }
         option = myIntent.getIntExtra("position", 0);
+        int position = option;
 
-        biolist = (ListView) findViewById(R.id.listview);
+//        biolist = (ListView) findViewById(R.id.listview);
+//
+//        pop_adapter pop_adapter = new pop_adapter();
+//        biolist.setAdapter(pop_adapter);
 
-        pop_adapter pop_adapter = new pop_adapter();
-        biolist.setAdapter(pop_adapter);
 
 
-    }
 
-    class pop_adapter extends BaseAdapter {
+//    class pop_adapter extends BaseAdapter {
+//
+//        @Override
+//        public int getCount() {return 1;}
+//
+//        @Override
+//        public Object getItem(int postion) {
+//            return null;
+//        }
+//
+//        @Override
+//        public long getItemId(int position) {
+//            return 0;
+//        }
+//
+//        @Override
+//        public View getView(int position, View view, ViewGroup viewGroup) {
+//            view = getLayoutInflater().inflate(R.layout.popupwindow, null);
 
-        @Override
-        public int getCount() {return 1;}
-
-        @Override
-        public Object getItem(int postion) {
-            return myIntent.getIntExtra("position", 0);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view = getLayoutInflater().inflate(R.layout.popupwindow, null);
-
-            ImageView image = (ImageView)view.findViewById(R.id.mapView);
-            TextView name = (TextView)view.findViewById(R.id.name);
-            RatingBar stars = (RatingBar)view.findViewById(R.id.stars);
-            TextView description = (TextView)view.findViewById(R.id.text_desc);
-            TextView address = (TextView)view.findViewById(R.id.address);
+            ImageView image = (ImageView) findViewById(R.id.mapView);
+            TextView name = (TextView) findViewById(R.id.name);
+            RatingBar stars = (RatingBar) findViewById(R.id.stars);
+            TextView description = (TextView) findViewById(R.id.text_desc);
+            TextView address = (TextView) findViewById(R.id.address);
 
             if(whichList == 1) {
                 //image.setImageResource(R.drawable.house);
@@ -102,14 +103,14 @@ public class Pop extends Activity {
 
             else if(whichList == 2) {
                 //image.setImageResource(R.drawable.house);
-                name.setText(drinkList.get(i).getName());
-                stars.setRating(drinkList.get(i).getStars());
-                description.setText(drinkList.get(i).getLongDesc());
-                address.setText(drinkList.get(i).getAddress());
+                name.setText(drinkList.get(position).getName());
+                stars.setRating(drinkList.get(position).getStars());
+                description.setText(drinkList.get(position).getLongDesc());
+                address.setText(drinkList.get(position).getAddress());
             }
-            
-            return view;
-        }
-    }
+//            
+//            return view;
+        }}
 
-}
+
+

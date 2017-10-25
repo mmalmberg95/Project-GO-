@@ -42,16 +42,15 @@ public class Pop extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.8), (int)(height*.6));
+        getWindow().setLayout((int) (width * .8), (int) (height * .6));
 
         setContentView(R.layout.popupwindow);
 
         Intent myIntent = getIntent();
         whichList = myIntent.getIntExtra("whichList", 0);
-        if(whichList == 1) {
+        if (whichList == 1) {
             eatList = (ArrayList<EatData>) myIntent.getSerializableExtra("array");
-        }
-        else if(whichList == 2) {
+        } else if (whichList == 2) {
             drinkList = (ArrayList<DrinkData>) myIntent.getSerializableExtra("array");
         }
 //        else {
@@ -60,96 +59,27 @@ public class Pop extends Activity {
         option = myIntent.getIntExtra("position", 0);
         int position = option;
 
-//        biolist = (ListView) findViewById(R.id.listview);
-//
-//        pop_adapter pop_adapter = new pop_adapter();
-//        biolist.setAdapter(pop_adapter);
 
+        ImageView image = (ImageView) findViewById(R.id.mapView);
+        TextView name = (TextView) findViewById(R.id.name);
+        RatingBar stars = (RatingBar) findViewById(R.id.stars);
+        TextView description = (TextView) findViewById(R.id.text_desc);
+        TextView address = (TextView) findViewById(R.id.address);
 
+        if (whichList == 1) {
+            //image.setImageResource(R.drawable.house);
+            name.setText(eatList.get(position).getName());
+            stars.setRating(eatList.get(position).getStars());
+            description.setText(eatList.get(position).getLongDesc());
+            address.setText(eatList.get(position).getAddress());
+        } else if (whichList == 2) {
+            //image.setImageResource(R.drawable.house);
+            name.setText(drinkList.get(position).getName());
+            stars.setRating(drinkList.get(position).getStars());
+            description.setText(drinkList.get(position).getLongDesc());
+            address.setText(drinkList.get(position).getAddress());
+        }
+    }
+}
 
-
-//    class pop_adapter extends BaseAdapter {
-//
-//        @Override
-//        public int getCount() {return 1;}
-//
-//        @Override
-//        public Object getItem(int postion) {
-<<<<<<< HEAD
-//            return null;
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-=======
-//            return myIntent.getIntExtra("position", 0);
-//        }
-//
-//        @Override
-//        public long getItemId(int i) {
->>>>>>> e82737446eb270bd94f239d9d1e0b048e97593a6
-//            return 0;
-//        }
-//
-//        @Override
-<<<<<<< HEAD
-//        public View getView(int position, View view, ViewGroup viewGroup) {
-//            view = getLayoutInflater().inflate(R.layout.popupwindow, null);
-
-            ImageView image = (ImageView) findViewById(R.id.mapView);
-            TextView name = (TextView) findViewById(R.id.name);
-            RatingBar stars = (RatingBar) findViewById(R.id.stars);
-            TextView description = (TextView) findViewById(R.id.text_desc);
-            TextView address = (TextView) findViewById(R.id.address);
-
-            if(whichList == 1) {
-                //image.setImageResource(R.drawable.house);
-                name.setText(eatList.get(position).getName());
-                stars.setRating(eatList.get(position).getStars());
-                description.setText(eatList.get(position).getLongDesc());
-                address.setText(eatList.get(position).getAddress());
-            }
-
-            else if(whichList == 2) {
-                //image.setImageResource(R.drawable.house);
-                name.setText(drinkList.get(position).getName());
-                stars.setRating(drinkList.get(position).getStars());
-                description.setText(drinkList.get(position).getLongDesc());
-                address.setText(drinkList.get(position).getAddress());
-            }
-//            
-//            return view;
-        }}
-
-
-=======
-//        public View getView(int i, View view, ViewGroup viewGroup) {
-//            view = getLayoutInflater().inflate(R.layout.popupwindow, null);
-//
-//            ImageView image = (ImageView)view.findViewById(R.id.mapView);
-//            TextView name = (TextView)view.findViewById(R.id.name);
-//            RatingBar stars = (RatingBar)view.findViewById(R.id.stars);
-//            TextView description = (TextView)view.findViewById(R.id.text_desc);
-//            TextView address = (TextView)view.findViewById(R.id.address);
-//
-//            if(whichList == 1) {
-//                //image.setImageResource(R.drawable.house);
-//                name.setText(eatList.get(position).getName());
-//                stars.setRating(eatList.get(position).getStars());
-//                description.setText(eatList.get(position).getLongDesc());
-//                address.setText(eatList.get(position).getAddress());
-//            }
-//
-//            else if(whichList == 2) {
-//                //image.setImageResource(R.drawable.house);
-//                name.setText(drinkList.get(i).getName());
-//                stars.setRating(drinkList.get(i).getStars());
-//                description.setText(drinkList.get(i).getLongDesc());
-//                address.setText(drinkList.get(i).getAddress());
-//            }
-//
-//            return view;
-//        }
-//    }
->>>>>>> e82737446eb270bd94f239d9d1e0b048e97593a6
 

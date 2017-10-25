@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/background_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:cropToPadding="true"
-        android:background="@null"
-        app:srcCompat="@drawable/doresult1" />
+    <!--<ImageButton-->
+        <!--android:id="@+id/background_image"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:cropToPadding="true"-->
+        <!--android:background="@null"/>-->
+        <!--&lt;!&ndash;app:srcCompat="@drawable/doresult1" />&ndash;&gt;-->
 
     <ImageView
         android:id="@+id/imageView"

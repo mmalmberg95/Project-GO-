@@ -63,39 +63,27 @@ public class OptionsList extends AppCompatActivity {
         if(whichList == 1) {
             eatList = (ArrayList<EatData>) myIntent.getSerializableExtra("array");
             resetButton.setImageResource(R.drawable.eatrefresh);
-            background_images[0] = R.drawable.eatresult1;
-            background_images[1] = R.drawable.eatresults2;
-            background_images[2] = R.drawable.eatresult3;
+//            background_images[0] = R.drawable.eatresult1;
+//            background_images[1] = R.drawable.eatresults2;
+//            background_images[2] = R.drawable.eatresult3;
         }
         else if(whichList == 2) {
             drinkList = (ArrayList<DrinkData>) myIntent.getSerializableExtra("array");
             resetButton.setImageResource(R.drawable.drinkrefresh);
-            background_images[0] = R.drawable.drinkresult1;
-            background_images[1] = R.drawable.drinkresult2;
-            background_images[2] = R.drawable.drinkresult3;
+//            background_images[0] = R.drawable.drinkresult1;
+//            background_images[1] = R.drawable.drinkresult2;
+//            background_images[2] = R.drawable.drinkresult3;
         }
         else {
             doList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
             resetButton.setImageResource(R.drawable.dorefresh);
-            background_images[0] = R.drawable.doresult1;
-            background_images[1] = R.drawable.doresult2;
-            background_images[2] = R.drawable.doresult3;
+//            background_images[0] = R.drawable.doresult1;
+//            background_images[1] = R.drawable.doresult2;
+//            background_images[2] = R.drawable.doresult3;
         }
 
 
-//        option1 = myIntent.getIntExtra("option1", option1);
-//        random.add(option1);
-//        option2 = myIntent.getIntExtra("option2", option2);
-//        random.add(option2);
-//        option3 = myIntent.getIntExtra("option3", option3);
-//        random.add(option3);
-//
-//
-//        biolist = (ListView) findViewById(R.id.bio_list);
-//        resetButton = (ImageButton) findViewById(R.id.imageButton);
-//
-//        options_adapter options_adapter = new options_adapter();
-//        biolist.setAdapter(options_adapter
+
         biolist = (ListView) findViewById(R.id.bio_list);
 
 
@@ -108,33 +96,6 @@ public class OptionsList extends AppCompatActivity {
 
         newList(whichList);
 
-//        options_adapter options_adapter = new options_adapter();
-        //biolist.setAdapter(options_adapter);
-
-
-//        biolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent(OptionsList.this,Pop.class);
-//                if(whichList == 1) {
-//                    intent.putExtra("array", eatList);
-//                    intent.putExtra("whichList", 1);
-//                }
-//                else if(whichList == 2){
-//                    intent.putExtra("array", drinkList);
-//                    intent.putExtra("whichList", 2);
-//                }
-//                else{
-//                    intent.putExtra("array", doList);
-//                    intent.putExtra("whichList", 3);
-//                }
-//                //intent.putExtra("option", option1);
-//
-//                startActivity(intent);
-//
-//
-//            }
-//        });
 
 
     }
@@ -215,10 +176,10 @@ public class OptionsList extends AppCompatActivity {
 //            TextView name = (TextView)view.findViewById(R.id.textView_name);
 //            TextView description = (TextView)view.findViewById(R.id.textView_desc);
 //            TextView address = (TextView)view.findViewById(R.id.textView_address);
-            ImageView background = (ImageView)view.findViewById(R.id.background_image);
+//            ImageView background = (ImageView)view.findViewById(R.id.background_image);
 
 
-g
+
             //randNum = rand.nextInt(eatList.size());
             //int[] ints = new Random().ints(0, 50).distinct().limit(3).toArray();
 
@@ -228,7 +189,7 @@ g
                  //image.setImageResource(getResources().getIdentifier("button1", "drawable", null));
                 int drawableId = getResources().getIdentifier(eatList.get(i).getImageName(), "drawable", getPackageName());
                 image.setImageResource(drawableId);
-                background.setImageResource(background_images[i]);
+//                background.setImageResource(background_images[i]);
                 //image.setImageResource(R.drawable.jethros);
                 name.setText(eatList.get(i).getName());
                 description.setText(eatList.get(i).getShortDesc());
@@ -243,7 +204,7 @@ g
 //                image.setImageResource(R.drawable.house);
                 int drawableId = getResources().getIdentifier(drinkList.get(i).getImageName(), "drawable", getPackageName());
                 image.setImageResource(drawableId);
-                background.setImageResource(background_images[i]);
+//                background.setImageResource(background_images[i]);
                 name.setText(drinkList.get(i).getName());
                 description.setText(drinkList.get(i).getShortDesc());
                 address.setText(drinkList.get(i).getAddress());
@@ -254,7 +215,7 @@ g
                 image.setImageResource(R.drawable.house);
 //                int drawableId = getResources().getIdentifier(doList.get(i).getImageName(), "drawable", getPackageName());
 //                image.setImageResource(drawableId);
-                background.setImageResource(background_images[i]);
+ //               background.setImageResource(background_images[i]);
                 name.setText(doList.get(i).getName());
                 description.setText(doList.get(i).getShortDesc());
                 address.setText(doList.get(i).getAddress());

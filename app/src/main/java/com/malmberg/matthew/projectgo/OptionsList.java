@@ -1,6 +1,7 @@
 package com.malmberg.matthew.projectgo;
 
 import android.content.Intent;
+import android.location.Location;
 import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Random;
 
 import static com.malmberg.matthew.projectgo.R.drawable.button1;
@@ -36,6 +39,10 @@ public class OptionsList extends AppCompatActivity {
     ArrayList<DoData> doList = new ArrayList<DoData>();
     private ImageButton resetButton;
     private SeekBar distance_slider;
+
+    ArrayList<EatData> displayEatList = new ArrayList<EatData>();
+    ArrayList<DrinkData> displayDrinkList = new ArrayList<DrinkData>();
+    ArrayList<DoData> displayDoList = new ArrayList<DoData>();
 
 //    Random rand = new Random();
 //    int randNum;
@@ -231,5 +238,106 @@ public class OptionsList extends AppCompatActivity {
             return view;
         }
     }
+
+    /*
+Accepts an int value for as there is no way to give it a pure array.
+maxDistance accepts an int for whatever the slider is set to
+*/
+
+    boolean checkDate(int eventID)
+    {
+        Date currentTime = Calendar.getInstance().getTime();
+
+        //checks to see if the override time of Month = 12 and Day = 31 is in use
+        if((doList.get(eventID).getDay() = '31') && (doList.get(eventID).getMonth() = '12'))
+        {
+            return true;
+        }
+
+        else if((doList.get(eventID).getDay() = currentTime.getDay()) && (doList.get(eventID).getMonth() = currentTime.getMonth()) && (doList.get(eventID).getYear() = currentTime.getYear()))
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    }
+
+
+    void checkValidity(int eventID, int maxDistance)
+    {
+        Location user =  new Location("user");
+        Location event = new Location("event");
+
+        //Location of Iowa Capitol Building
+        user.setLatitude(41.6005448);
+        user.setLongitude(-93.6091064);
+
+        if(whichlist = 1) {
+            event.setLatitude(eatList.get(eventID).getLatitude());
+            event.setLongitude(eatList.get(eventID).getLongitude());
+        }
+
+        else if(whichlist = 2) {
+            event.setLatitude(drinkList.get(eventID).getLatitude());
+            event.setLongitude(drinkList.get(eventID).getLongitude());
+        }
+
+        else {
+        event.setLatitude(doList.get(eventID).getLatitude());
+        event.setLongitude(doList.get(eventID).getLongitude());}
+
+
+        //finds and compares distance
+
+        int distance = user.distanceTo(site)/1609.34; //meters to miles
+
+        //Adds to array if applicable
+        if(whichlist = 1)
+        {
+            if(distance <= maxDistance)
+            {
+                displayEatList.add(eatList.get(eventID));
+            }
+
+            //Checks to see if the entire array has been scanned
+            if(eventID < (eatList.size() - 1))
+            {
+                checkValidity(eventID + 1, maxDistance);
+            }
+        }
+
+        else if(whichlist = 2)
+        {
+            if(distance <= maxDistance)
+            {
+                displayDrinkList.add(drinkList.get(eventID));
+            }
+
+            //Checks to see if the entire array has been scanned
+            if(eventID < (drinkList.size() - 1))
+            {
+                checkValidity(eventID + 1, maxDistance);
+            }
+        }
+
+        else
+        {
+            if((distance <= maxDistance) && (checkDate[eventID] = true))
+            {
+                displayDoList.add(doList.get(eventID));
+            }
+
+            //Checks to see if the entire array has been scanned
+            if(eventID < (doList.size() - 1))
+            {
+                checkValidity(eventID + 1, maxDistance);
+            }
+        }
+    }
+
+
 
 }

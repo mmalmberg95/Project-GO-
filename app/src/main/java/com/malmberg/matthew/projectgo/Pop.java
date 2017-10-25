@@ -75,15 +75,24 @@ public class Pop extends Activity {
 //
 //        @Override
 //        public Object getItem(int postion) {
+<<<<<<< HEAD
 //            return null;
 //        }
 //
 //        @Override
 //        public long getItemId(int position) {
+=======
+//            return myIntent.getIntExtra("position", 0);
+//        }
+//
+//        @Override
+//        public long getItemId(int i) {
+>>>>>>> e82737446eb270bd94f239d9d1e0b048e97593a6
 //            return 0;
 //        }
 //
 //        @Override
+<<<<<<< HEAD
 //        public View getView(int position, View view, ViewGroup viewGroup) {
 //            view = getLayoutInflater().inflate(R.layout.popupwindow, null);
 
@@ -113,4 +122,34 @@ public class Pop extends Activity {
         }}
 
 
+=======
+//        public View getView(int i, View view, ViewGroup viewGroup) {
+//            view = getLayoutInflater().inflate(R.layout.popupwindow, null);
+//
+//            ImageView image = (ImageView)view.findViewById(R.id.mapView);
+//            TextView name = (TextView)view.findViewById(R.id.name);
+//            RatingBar stars = (RatingBar)view.findViewById(R.id.stars);
+//            TextView description = (TextView)view.findViewById(R.id.text_desc);
+//            TextView address = (TextView)view.findViewById(R.id.address);
+//
+//            if(whichList == 1) {
+//                //image.setImageResource(R.drawable.house);
+//                name.setText(eatList.get(position).getName());
+//                stars.setRating(eatList.get(position).getStars());
+//                description.setText(eatList.get(position).getLongDesc());
+//                address.setText(eatList.get(position).getAddress());
+//            }
+//
+//            else if(whichList == 2) {
+//                //image.setImageResource(R.drawable.house);
+//                name.setText(drinkList.get(i).getName());
+//                stars.setRating(drinkList.get(i).getStars());
+//                description.setText(drinkList.get(i).getLongDesc());
+//                address.setText(drinkList.get(i).getAddress());
+//            }
+//
+//            return view;
+//        }
+//    }
+>>>>>>> e82737446eb270bd94f239d9d1e0b048e97593a6
 

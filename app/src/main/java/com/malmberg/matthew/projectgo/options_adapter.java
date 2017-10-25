@@ -133,7 +133,7 @@ public class options_adapter extends BaseAdapter {
 //            address.setText(drinkList.get(i).getAddress());
 //        }
 //
-//        //TODO: change drink list to do list
+//        //TODO: change drink list to dobutton list
 //        if(whichList == 3) {
 //            image.setImageResource(R.drawable.house);
 //            name.setText(eatList.get(i).getName());

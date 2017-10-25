@@ -35,6 +35,8 @@ public class OptionsList extends AppCompatActivity {
     ArrayList<DoData> doList = new ArrayList<DoData>();
     private ImageButton resetButton;
 
+    int[] background_images = new int[3];
+
 //    Random rand = new Random();
 //    int randNum;
     //TODO: int from intent 1-3 for Eat, Drink, Do
@@ -50,19 +52,34 @@ public class OptionsList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options_list);
 
+        resetButton = (ImageButton) findViewById(R.id.imageButton);
+
+
         //Create a new intent
         //Get the variable for which type of list
-        //Get the correct list
+        //Get the correct list and correct styling
         Intent myIntent = getIntent();
         whichList = myIntent.getIntExtra("whichList", 0);
         if(whichList == 1) {
             eatList = (ArrayList<EatData>) myIntent.getSerializableExtra("array");
+            resetButton.setImageResource(R.drawable.eatrefresh);
+            background_images[0] = R.drawable.eatresult1;
+            background_images[1] = R.drawable.eatresults2;
+            background_images[2] = R.drawable.eatresult3;
         }
         else if(whichList == 2) {
             drinkList = (ArrayList<DrinkData>) myIntent.getSerializableExtra("array");
+            resetButton.setImageResource(R.drawable.drinkrefresh);
+            background_images[0] = R.drawable.drinkresult1;
+            background_images[1] = R.drawable.drinkresult2;
+            background_images[2] = R.drawable.drinkresult3;
         }
         else {
             doList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
+            resetButton.setImageResource(R.drawable.dorefresh);
+            background_images[0] = R.drawable.doresult1;
+            background_images[1] = R.drawable.doresult2;
+            background_images[2] = R.drawable.doresult3;
         }
 
 
@@ -80,7 +97,7 @@ public class OptionsList extends AppCompatActivity {
 //        options_adapter options_adapter = new options_adapter();
 //        biolist.setAdapter(options_adapter
         biolist = (ListView) findViewById(R.id.bio_list);
-        resetButton = (ImageButton) findViewById(R.id.imageButton);
+
 
         resetButton.setOnClickListener (new View.OnClickListener(){
             @Override
@@ -185,6 +202,7 @@ public class OptionsList extends AppCompatActivity {
             TextView name = (TextView)view.findViewById(R.id.textView_name);
             TextView description = (TextView)view.findViewById(R.id.textView_desc);
             TextView address = (TextView)view.findViewById(R.id.textView_address);
+            ImageView background = (ImageView)view.findViewById(R.id.background_image);
 
 
             //randNum = rand.nextInt(eatList.size());
@@ -196,10 +214,12 @@ public class OptionsList extends AppCompatActivity {
                  //image.setImageResource(getResources().getIdentifier("button1", "drawable", null));
                 int drawableId = getResources().getIdentifier(eatList.get(i).getImageName(), "drawable", getPackageName());
                 image.setImageResource(drawableId);
+                background.setImageResource(background_images[i]);
                 //image.setImageResource(R.drawable.jethros);
                 name.setText(eatList.get(i).getName());
                 description.setText(eatList.get(i).getShortDesc());
                 address.setText(eatList.get(i).getAddress());
+
 
 
             }
@@ -209,6 +229,7 @@ public class OptionsList extends AppCompatActivity {
 //                image.setImageResource(R.drawable.house);
                 int drawableId = getResources().getIdentifier(drinkList.get(i).getImageName(), "drawable", getPackageName());
                 image.setImageResource(drawableId);
+                background.setImageResource(background_images[i]);
                 name.setText(drinkList.get(i).getName());
                 description.setText(drinkList.get(i).getShortDesc());
                 address.setText(drinkList.get(i).getAddress());
@@ -219,6 +240,7 @@ public class OptionsList extends AppCompatActivity {
                 image.setImageResource(R.drawable.house);
 //                int drawableId = getResources().getIdentifier(doList.get(i).getImageName(), "drawable", getPackageName());
 //                image.setImageResource(drawableId);
+                background.setImageResource(background_images[i]);
                 name.setText(doList.get(i).getName());
                 description.setText(doList.get(i).getShortDesc());
                 address.setText(doList.get(i).getAddress());

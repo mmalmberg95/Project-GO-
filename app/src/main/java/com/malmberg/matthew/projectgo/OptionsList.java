@@ -148,12 +148,12 @@ public class OptionsList extends AppCompatActivity {
                         //Log.v("hi", String.valueOf(i));
                         intent.putExtra("position", i);
 
-                        int drawableId = getResources().getIdentifier(eatList.get(i).getImageName(), "drawable", getPackageName());
-                        image.setImageResource(drawableId);
-                        //image.setImageResource(R.drawable.jethros);
-                        name.setText(eatList.get(i).getName());
-                        description.setText(eatList.get(i).getShortDesc());
-                        address.setText(eatList.get(i).getAddress());
+//                        int drawableId = getResources().getIdentifier(eatList.get(i).getImageName(), "drawable", getPackageName());
+//                        image.setImageResource(drawableId);
+//                        //image.setImageResource(R.drawable.jethros);
+//                        name.setText(eatList.get(i).getName());
+//                        description.setText(eatList.get(i).getShortDesc());
+//                        address.setText(eatList.get(i).getAddress());
                     }
                     else if(whichList == 2){
                         intent.putExtra("array", drinkList);

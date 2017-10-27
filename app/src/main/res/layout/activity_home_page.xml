@@ -27,7 +27,7 @@
             android:background="@android:color/transparent"
             android:backgroundTint="@android:color/white"
             android:contentDescription="Eat"
-            app:srcCompat="@drawable/button1" />
+            app:srcCompat="@drawable/eatbutton" />
 
         <ImageButton
             android:id="@+id/drink_button"
@@ -37,25 +37,17 @@
             android:background="@android:color/transparent"
             android:backgroundTint="@android:color/white"
             android:contentDescription="Drink"
-            app:srcCompat="@drawable/button1" />
+            app:srcCompat="@drawable/drinkbutton" />
 
         <ImageButton
-            android:id="@+id/listen_button"
+            android:id="@+id/do_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.45"
-            android:backgroundTint="@android:color/white"
-            android:contentDescription="Listen"
-            app:srcCompat="@drawable/button1" />
-
-        <ImageButton
-            android:id="@+id/see_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.44"
             android:background="@android:color/transparent"
             android:backgroundTint="@android:color/white"
-            android:contentDescription="See"
-            app:srcCompat="@drawable/button1" />
+            android:contentDescription="Listen"
+            app:srcCompat="@drawable/dobutton" />
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

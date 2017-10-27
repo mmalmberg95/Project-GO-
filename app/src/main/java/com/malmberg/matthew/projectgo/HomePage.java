@@ -1,29 +1,28 @@
 package com.malmberg.matthew.projectgo;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ListView;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomePage extends AppCompatActivity {
 
     private ImageButton eatButton;
     private ImageButton drinkButton;
-    private ImageButton listenButton;
-    private ImageButton seeButton;
+    private ImageButton doButton;
 
+//    public ArrayList<BioData> BioArray = new ArrayList<>();
+    public ArrayList<EatData> EatArray = new ArrayList<>();
+    public ArrayList<DrinkData> DrinkArray = new ArrayList<>();
+    public ArrayList<DoData> DoArray = new ArrayList<>();
 
 
     @Override
@@ -33,17 +32,18 @@ public class HomePage extends AppCompatActivity {
 
         eatButton = (ImageButton) findViewById(R.id.eat_button);
         drinkButton = (ImageButton) findViewById(R.id.drink_button);
-        listenButton = (ImageButton) findViewById(R.id.listen_button);
-        seeButton = (ImageButton) findViewById(R.id.see_button);
+        doButton = (ImageButton) findViewById(R.id.do_button);
+
 
 
         eatButton.setOnClickListener (new View.OnClickListener(){
             @Override
             public void onClick (View view) {
                 Intent intent = new Intent(view.getContext(), OptionsList.class);
+                intent.putExtra("whichList", 1);
+                intent.putExtra("array", EatArray);
+
                 startActivity(intent);
-
-
             }
         });
 
@@ -51,32 +51,38 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick (View view) {
                 Intent intent = new Intent(view.getContext(), OptionsList.class);
+                intent.putExtra("whichList", 2);
+                intent.putExtra("array", DrinkArray);
                 startActivity(intent);
             }
         });
 
-        listenButton.setOnClickListener (new View.OnClickListener(){
+        doButton.setOnClickListener (new View.OnClickListener(){
             @Override
             public void onClick (View view) {
                 Intent intent = new Intent(view.getContext(), OptionsList.class);
+                intent.putExtra("whichList", 3);
+                intent.putExtra("array", DoArray);
                 startActivity(intent);
             }
         });
 
-        seeButton.setOnClickListener (new View.OnClickListener(){
-            @Override
-            public void onClick (View view) {
-                Intent intent = new Intent(view.getContext(), OptionsList.class);
-                startActivity(intent);
-            }
-        });
-        readGoData();
+
+        readGoData(1);
+        readGoData(2);
+        readGoData(3); //no images yet
     }
 
-    private List<BioData> BioArray = new ArrayList<>();
-    private void readGoData() {
+
+
+    private void readGoData(int whichType) {
         //takes GoData and puts it in an InputStream
-        InputStream is = getResources().openRawResource(R.raw.godata);
+        int whichList = whichType;
+        InputStream is;
+        if(whichList == 1) {is = getResources().openRawResource(R.raw.eat_data);}
+        else if (whichList == 2) {is = getResources().openRawResource(R.raw.drink_data);}
+        else {is = getResources().openRawResource(R.raw.do_data);}
+
         //created to read the InputStream
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, Charset.forName("UTF-8"))
@@ -84,23 +90,61 @@ public class HomePage extends AppCompatActivity {
         //loop to read file
         String line = "";
         try {
+//            reader.readLine();
             while ((line = reader.readLine()) != null) {
                 //split by comma
                 //info is a just a identifier for the different splits
-                String[] info = line.split(",");
+                String[] info = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 
                 //Read the Data
-                BioData data = new BioData();
-                data.setName(info[0]);
-                data.setPrice(Integer.parseInt(info[1]));
-                data.setDescription(info[2]);
-                data.setEat(Boolean.parseBoolean(info[3]));
-                data.setDrink(Boolean.parseBoolean(info[4]));
-                data.setListen(Boolean.parseBoolean(info[5]));
-                data.setSee(Boolean.parseBoolean(info[6]));
+                if(whichList == 1) {
+                    EatData data = new EatData();
+                    data.setName(info[0]);
+                    data.setPrice(Integer.parseInt(info[1]));
+                    data.setStars(Integer.parseInt(info[2]));
+                    data.setAddress(info[3]);
+                    data.setShortDesc(info[4]);
+                    data.setLongDesc(info[5]);
+                    data.setLatitude(Float.parseFloat(info[6]));
+                    data.setLongitude(Float.parseFloat(info[7]));
+                    data.setImageName(info[8]);
 
-                //adds the data to our arrayList
-                BioArray.add(data);
+                    EatArray.add(data);
+                }
+
+                if(whichList == 2) {
+                    DrinkData data = new DrinkData();
+                    data.setName(info[0]);
+                    data.setPrice(Integer.parseInt(info[1]));
+                    data.setStars(Integer.parseInt(info[2]));
+                    data.setAddress(info[3]);
+                    data.setShortDesc(info[4]);
+                    data.setLongDesc(info[5]);
+                    data.setLatitude(Float.parseFloat(info[6]));
+                    data.setLongitude(Float.parseFloat(info[7]));
+                    data.setImageName(info[8]);
+
+                    DrinkArray.add(data);
+                }
+                if(whichList == 3) {
+                    DoData data = new DoData();
+                    data.setName(info[0]);
+                    data.setPrice(Integer.parseInt(info[1]));
+                    data.setStars(Integer.parseInt(info[2]));
+                    data.setAddress(info[3]);
+                    data.setShortDesc(info[4]);
+                    data.setLongDesc(info[5]);
+                    data.setDay(Integer.parseInt(info[6]));
+                    data.setMonth(Integer.parseInt(info[7]));
+                    data.setYear(Integer.parseInt(info[8]));
+                    data.setLatitude(Float.parseFloat(info[9]));
+                    data.setLongitude(Float.parseFloat(info[10]));
+                    //data.setImageName(info[11]); //no image data in CSV yet
+
+                    DoArray.add(data);
+                }
+
+
             }
             //catches any errors that might appear while reading the file and outputs the error message
         } catch (IOException e) {
@@ -109,5 +153,7 @@ public class HomePage extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
 
 }

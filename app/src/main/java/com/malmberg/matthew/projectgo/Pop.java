@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -28,6 +25,8 @@ public class Pop extends Activity {
     ArrayList<DoData> doList = new ArrayList<DoData>();
     private ImageButton resetButton;
 
+
+
     //TODO: int from intent 1-3 for Eat, Drink, Do
     private int whichList;
     private int option;
@@ -45,17 +44,22 @@ public class Pop extends Activity {
         getWindow().setLayout((int) (width * .8), (int) (height * .6));
 
         setContentView(R.layout.popupwindow);
+        RelativeLayout  relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayoutid);
 
         Intent myIntent = getIntent();
         whichList = myIntent.getIntExtra("whichList", 0);
         if (whichList == 1) {
             eatList = (ArrayList<EatData>) myIntent.getSerializableExtra("array");
+            relativeLayout.setBackgroundResource(R.drawable.fooddescription);
+
         } else if (whichList == 2) {
             drinkList = (ArrayList<DrinkData>) myIntent.getSerializableExtra("array");
+            relativeLayout.setBackgroundResource(R.drawable.drinkdescription);
         }
-//        else {
-//            doList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
-//        }
+        else {
+            doList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
+            relativeLayout.setBackgroundResource(R.drawable.dodescription);
+        }
         option = myIntent.getIntExtra("position", 0);
         int position = option;
 
@@ -66,14 +70,18 @@ public class Pop extends Activity {
         TextView description = (TextView) findViewById(R.id.text_desc);
         TextView address = (TextView) findViewById(R.id.address);
 
-        if (whichList == 1) {
-            //image.setImageResource(R.drawable.house);
+        if (whichList == 1){
+            int drawableId = getResources().getIdentifier(eatList.get(position).getImageName(), "drawable", getPackageName());
+            image.setImageResource(drawableId);
             name.setText(eatList.get(position).getName());
             stars.setRating(eatList.get(position).getStars());
             description.setText(eatList.get(position).getLongDesc());
             address.setText(eatList.get(position).getAddress());
-        } else if (whichList == 2) {
-            //image.setImageResource(R.drawable.house);
+        }
+
+        else if (whichList == 2) {
+            int drawableId = getResources().getIdentifier(drinkList.get(position).getImageName(), "drawable", getPackageName());
+            image.setImageResource(drawableId);
             name.setText(drinkList.get(position).getName());
             stars.setRating(drinkList.get(position).getStars());
             description.setText(drinkList.get(position).getLongDesc());

@@ -146,7 +146,7 @@ public class HomePage extends AppCompatActivity {
                     data.setYear(Integer.parseInt(info[8]));
                     data.setLatitude(Float.parseFloat(info[9]));
                     data.setLongitude(Float.parseFloat(info[10]));
-                    //data.setImageName(info[11]); //no image data in CSV yet
+                    data.setImageName(info[11]);
 
                     DoArray.add(data);
                 }

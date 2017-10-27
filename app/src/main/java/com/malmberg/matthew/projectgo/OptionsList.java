@@ -237,9 +237,9 @@ public class OptionsList extends AppCompatActivity {
 
 
             if(whichList == 3) {
-                image.setImageResource(R.drawable.house);
-//                int drawableId = getResources().getIdentifier(doList.get(i).getImageName(), "drawable", getPackageName());
-//                image.setImageResource(drawableId);
+                //image.setImageResource(R.drawable.house);
+                int drawableId = getResources().getIdentifier(doList.get(i).getImageName(), "drawable", getPackageName());
+                image.setImageResource(drawableId);
                 background.setImageResource(background_images[i]);
                 name.setText(doList.get(i).getName());
                 description.setText(doList.get(i).getShortDesc());

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,6 +30,8 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+
 
         eatButton = (ImageButton) findViewById(R.id.eat_button);
         drinkButton = (ImageButton) findViewById(R.id.drink_button);
@@ -139,7 +142,7 @@ public class HomePage extends AppCompatActivity {
                     data.setYear(Integer.parseInt(info[8]));
                     data.setLatitude(Float.parseFloat(info[9]));
                     data.setLongitude(Float.parseFloat(info[10]));
-                    //data.setImageName(info[11]); //no image data in CSV yet
+                    data.setImageName(info[11]);
 
                     DoArray.add(data);
                 }

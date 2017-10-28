@@ -112,9 +112,9 @@ public class OptionsList extends AppCompatActivity {
                 new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        displayEatList.clear();
-                        displayDrinkList.clear();
-                        displayDoList.clear();
+//                        displayEatList.clear();
+//                        displayDrinkList.clear();
+//                        displayDoList.clear();
 
                         checkValidity(0, progress);
 
@@ -296,7 +296,8 @@ maxDistance accepts an int for whatever the slider is set to
     }
 
 
-    public ArrayList<EatData> checkValidity(int eventID, int maxDistance)
+    //public ArrayList<EatData>
+    void checkValidity(int eventID, int maxDistance)
     {
         Location user =  new Location("user");
         Location event = new Location("event");
@@ -312,22 +313,21 @@ maxDistance accepts an int for whatever the slider is set to
 
         if(whichList == 1) {
 
-            if (eventID <= (eatList.size() - 1)) {
+
                 event.setLatitude(eatList.get(eventID).getLatitude());
                 event.setLongitude(eatList.get(eventID).getLongitude());
 
-                double distance = user.distanceTo(event)/1609.39; //meters to miles
+                double distance = user.distanceTo(event); //meters to miles
 //                /1609.39;
 
                 if (distance <= maxDistance) {
                     displayEatList.add(eatList.get(eventID));
+
                 }
 
                 //Checks to see if the entire array has been scanned
-
-                {
-                    checkValidity(eventID + 1, maxDistance);
-                }
+            if (eventID < (eatList.size() - 1)) {
+                checkValidity(eventID + 1, maxDistance);
             }
         }
 
@@ -382,7 +382,7 @@ maxDistance accepts an int for whatever the slider is set to
             }
         }
 
-        return displayEatList;
+        //return displayEatList;
     }
 
 

@@ -61,6 +61,7 @@ public class Pop extends Activity {
             relativeLayout.setBackgroundResource(R.drawable.doresult3);
         }
         option = myIntent.getIntExtra("position", 0);
+      
         int position = option;
 
 

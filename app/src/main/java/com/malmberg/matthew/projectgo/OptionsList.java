@@ -112,7 +112,13 @@ public class OptionsList extends AppCompatActivity {
                 new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        displayEatList.clear();
+                        displayDrinkList.clear();
+                        displayDoList.clear();
+
                         checkValidity(0, progress);
+
+                        newList(whichList);
                     }
 
                     @Override
@@ -290,7 +296,7 @@ maxDistance accepts an int for whatever the slider is set to
     }
 
 
-    void checkValidity(int eventID, int maxDistance)
+    public ArrayList<EatData> checkValidity(int eventID, int maxDistance)
     {
         Location user =  new Location("user");
         Location event = new Location("event");
@@ -299,14 +305,30 @@ maxDistance accepts an int for whatever the slider is set to
         user.setLatitude(41.6005448);
         user.setLongitude(-93.6091064);
 
+
+
         //empties arrays
-        displayEatList.clear();
-        displayDrinkList.clear();
-        displayDoList.clear();
+
 
         if(whichList == 1) {
-            event.setLatitude(eatList.get(eventID).getLatitude());
-            event.setLongitude(eatList.get(eventID).getLongitude());
+
+            if (eventID <= (eatList.size() - 1)) {
+                event.setLatitude(eatList.get(eventID).getLatitude());
+                event.setLongitude(eatList.get(eventID).getLongitude());
+
+                double distance = user.distanceTo(event)/1609.39; //meters to miles
+//                /1609.39;
+
+                if (distance <= maxDistance) {
+                    displayEatList.add(eatList.get(eventID));
+                }
+
+                //Checks to see if the entire array has been scanned
+
+                {
+                    checkValidity(eventID + 1, maxDistance);
+                }
+            }
         }
 
         else if(whichList == 2) {
@@ -321,25 +343,17 @@ maxDistance accepts an int for whatever the slider is set to
 
         //finds and compares distance
 
-        double distance = user.distanceTo(event)/1609.39; //meters to miles
 
         //Adds to array if applicable
         if(whichList == 1)
         {
-            if(distance <= maxDistance)
-            {
-                displayEatList.add(eatList.get(eventID));
-            }
 
-            //Checks to see if the entire array has been scanned
-            if(eventID < (eatList.size() - 1))
-            {
-                checkValidity(eventID + 1, maxDistance);
-            }
         }
 
         else if(whichList == 2)
         {
+            double distance = user.distanceTo(event); //meters to miles
+//                /1609.39;
             if(distance <= maxDistance)
             {
                 displayDrinkList.add(drinkList.get(eventID));
@@ -354,6 +368,8 @@ maxDistance accepts an int for whatever the slider is set to
 
         else
         {
+            double distance = user.distanceTo(event); //meters to miles
+//                /1609.39;
             if((distance <= maxDistance) && (checkDate(eventID) == true))
             {
                 displayDoList.add(doList.get(eventID));
@@ -365,6 +381,8 @@ maxDistance accepts an int for whatever the slider is set to
                 checkValidity(eventID + 1, maxDistance);
             }
         }
+
+        return displayEatList;
     }
 
 

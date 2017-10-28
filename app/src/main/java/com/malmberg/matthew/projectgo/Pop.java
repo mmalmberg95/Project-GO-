@@ -41,7 +41,7 @@ public class Pop extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width * .8), (int) (height * .6));
+        getWindow().setLayout((int) (width * .9), (int) (height * .8));
 
         setContentView(R.layout.popupwindow);
         RelativeLayout  relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayoutid);
@@ -50,15 +50,15 @@ public class Pop extends Activity {
         whichList = myIntent.getIntExtra("whichList", 0);
         if (whichList == 1) {
             eatList = (ArrayList<EatData>) myIntent.getSerializableExtra("array");
-            relativeLayout.setBackgroundResource(R.drawable.fooddescription);
+            relativeLayout.setBackgroundResource(R.drawable.eatresult3);
 
         } else if (whichList == 2) {
             drinkList = (ArrayList<DrinkData>) myIntent.getSerializableExtra("array");
-            relativeLayout.setBackgroundResource(R.drawable.drinkdescription);
+            relativeLayout.setBackgroundResource(R.drawable.drinkresult3);
         }
         else {
             doList = (ArrayList<DoData>) myIntent.getSerializableExtra("array");
-            relativeLayout.setBackgroundResource(R.drawable.dodescription);
+            relativeLayout.setBackgroundResource(R.drawable.doresult3);
         }
         option = myIntent.getIntExtra("position", 0);
         int position = option;
@@ -86,6 +86,15 @@ public class Pop extends Activity {
             stars.setRating(drinkList.get(position).getStars());
             description.setText(drinkList.get(position).getLongDesc());
             address.setText(drinkList.get(position).getAddress());
+        }
+
+        else {
+            int drawableId = getResources().getIdentifier(doList.get(position).getImageName(), "drawable", getPackageName());
+            image.setImageResource(drawableId);
+            name.setText(doList.get(position).getName());
+            stars.setRating(doList.get(position).getStars());
+            description.setText(doList.get(position).getLongDesc());
+            address.setText(doList.get(position).getAddress());
         }
     }
 }

@@ -57,7 +57,7 @@ public class DrinkData implements Serializable {
         return address;
     }
 
-    public void setAddress(String location) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

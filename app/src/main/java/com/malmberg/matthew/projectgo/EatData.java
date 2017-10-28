@@ -18,20 +18,9 @@ public class EatData implements Serializable {
     private float longitude;
     private String imageName;
 
-//    public EatData(String name, int price, int stars, String address, String shortDesc, String longDesc, float latitude, float longitude) {
-//        this.name = name;
-//        this.price = price;
-//        this.stars = stars;
-//        this.address = address;
-//        this.shortDesc = shortDesc;
-//        this.longDesc = longDesc;
-//        this.latitude = latitude;
-//        this.longitude = longitude;
-//    }
 
-    public String getName() {
-        return name;
-    }
+
+    public String getName() {return name;}
 
     public void setName(String name) {
         this.name = name;
@@ -57,7 +46,7 @@ public class EatData implements Serializable {
         return address;
     }
 
-    public void setAddress(String location) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

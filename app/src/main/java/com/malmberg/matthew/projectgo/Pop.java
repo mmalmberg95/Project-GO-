@@ -70,6 +70,7 @@ public class Pop extends Activity {
         RatingBar stars = (RatingBar) findViewById(R.id.stars);
         TextView description = (TextView) findViewById(R.id.text_desc);
         TextView address = (TextView) findViewById(R.id.address);
+        TextView price = (TextView) findViewById(R.id.price);
 
         if (whichList == 1){
             int drawableId = getResources().getIdentifier(eatList.get(position).getImageName(), "drawable", getPackageName());
@@ -78,6 +79,7 @@ public class Pop extends Activity {
             stars.setRating(eatList.get(position).getStars());
             description.setText(eatList.get(position).getLongDesc());
             address.setText(eatList.get(position).getAddress());
+            price.setText(eatList.get(position).getPrice());
         }
 
         else if (whichList == 2) {
@@ -87,6 +89,7 @@ public class Pop extends Activity {
             stars.setRating(drinkList.get(position).getStars());
             description.setText(drinkList.get(position).getLongDesc());
             address.setText(drinkList.get(position).getAddress());
+            price.setText(drinkList.get(position).getPrice());
         }
 
         else {
@@ -96,6 +99,7 @@ public class Pop extends Activity {
             stars.setRating(doList.get(position).getStars());
             description.setText(doList.get(position).getLongDesc());
             address.setText(doList.get(position).getAddress());
+            price.setText(doList.get(position).getPrice());
         }
     }
 }

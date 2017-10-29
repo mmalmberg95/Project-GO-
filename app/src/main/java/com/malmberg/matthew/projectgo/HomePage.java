@@ -103,7 +103,7 @@ public class HomePage extends AppCompatActivity {
                 if(whichList == 1) {
                     EatData data = new EatData();
                     data.setName(info[0]);
-                    data.setPrice(Integer.parseInt(info[1]));
+                    data.setPrice(info[1]);
                     data.setStars(Integer.parseInt(info[2]));
                     data.setAddress(info[3]);
                     data.setShortDesc(info[4]);
@@ -118,7 +118,7 @@ public class HomePage extends AppCompatActivity {
                 if(whichList == 2) {
                     DrinkData data = new DrinkData();
                     data.setName(info[0]);
-                    data.setPrice(Integer.parseInt(info[1]));
+                    data.setPrice(info[1]);
                     data.setStars(Integer.parseInt(info[2]));
                     data.setAddress(info[3]);
                     data.setShortDesc(info[4]);
@@ -132,7 +132,7 @@ public class HomePage extends AppCompatActivity {
                 if(whichList == 3) {
                     DoData data = new DoData();
                     data.setName(info[0]);
-                    data.setPrice(Integer.parseInt(info[1]));
+                    data.setPrice(info[1]);
                     data.setStars(Integer.parseInt(info[2]));
                     data.setAddress(info[3]);
                     data.setShortDesc(info[4]);

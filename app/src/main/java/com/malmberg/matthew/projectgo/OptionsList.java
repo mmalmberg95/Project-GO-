@@ -153,6 +153,7 @@ public class OptionsList extends AppCompatActivity {
             final TextView name = (TextView)view.findViewById(R.id.textView_name);
             final TextView description = (TextView)view.findViewById(R.id.textView_desc);
             final TextView address = (TextView)view.findViewById(R.id.textView_address);
+            final TextView price = (TextView)view.findViewById(R.id.textView_price);
             final ImageView background = (ImageView)view.findViewById(R.id.background_image);
 
             biolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -187,6 +188,7 @@ public class OptionsList extends AppCompatActivity {
                 image.setImageResource(drawableId);
                 background.setImageResource(R.drawable.eatresults);
                 name.setText(displayEatList.get(i).getName());
+                price.setText(displayEatList.get(i).getPrice());
                 description.setText(displayEatList.get(i).getShortDesc());
                 address.setText(displayEatList.get(i).getAddress());
             }
@@ -196,6 +198,7 @@ public class OptionsList extends AppCompatActivity {
                 int drawableId = getResources().getIdentifier(displayDrinkList.get(i).getImageName(), "drawable", getPackageName());
                 image.setImageResource(drawableId);
                 name.setText(displayDrinkList.get(i).getName());
+                price.setText(displayDrinkList.get(i).getPrice());
                 description.setText(displayDrinkList.get(i).getShortDesc());
                 address.setText(displayDrinkList.get(i).getAddress());
                 background.setImageResource(R.drawable.drinkresults);
@@ -206,6 +209,7 @@ public class OptionsList extends AppCompatActivity {
                 int drawableId = getResources().getIdentifier(displayDoList.get(i).getImageName(), "drawable", getPackageName());
                 image.setImageResource(drawableId);
                 name.setText(displayDoList.get(i).getName());
+                price.setText(displayDoList.get(i).getPrice());
                 description.setText(displayDoList.get(i).getShortDesc());
                 address.setText(displayDoList.get(i).getAddress());
                 background.setImageResource(R.drawable.doresults);

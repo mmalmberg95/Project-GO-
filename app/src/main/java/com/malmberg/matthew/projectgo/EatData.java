@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class EatData implements Serializable {
 
     private String name;
-    private int price;
+    private String price;
     private int stars;
     private String address;
     private String shortDesc;
@@ -26,11 +26,11 @@ public class EatData implements Serializable {
         this.name = name;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

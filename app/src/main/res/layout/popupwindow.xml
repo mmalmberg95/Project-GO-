@@ -77,4 +77,14 @@
         android:layout_below="@+id/address"
         android:paddingLeft="5dp"/>
 
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="TextView"
+        android:layout_alignTop="@+id/address"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
+
 </RelativeLayout>
